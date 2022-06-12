@@ -55,23 +55,33 @@ import axios from 'axios';
     data() {
       return {
         form: {
-          email: '',
-          password: '',
+          email: 'fintechtestuser@yandex.com',
+          password: '99Salman99*',
+          LoginType: '50dcd869-eeb3-ec11-ac1f-000c29330757'
         },
         show: true,
       }
     },
     methods: {
       onCreatePost(){
-        axios.post('https://dev-smoothie-api.fintechyazilim.com/api/User/Login',
-        {email: this.email, password: this.password}
+        let formData = new FormData();
+        formData.append('Email', this.form.email);
+        formData.append('Password', this.form.password);
+        formData.append('LoginType', this.form.LoginType);
+
+        axios
+        .post(
+          'https://dev-smoothie-api.fintechyazilim.com/api/User/Login',
+          formData
         ).then(response => {
           console.log(response);
-        });
+        }).catch((error) => {
+          console.log(error)
+        })
       },
       onSubmit(event) {
         event.preventDefault()
-        alert(JSON.stringify(this.form))
+        // alert(JSON.stringify(this.form))
       },
       onReset(event) {
         event.preventDefault()
@@ -82,4 +92,3 @@ import axios from 'axios';
     }
   }
 </script>
-

@@ -1,23 +1,25 @@
 <template>
+
   <div id="app">
-    <login />
-    <changePassword/>
+    <router-view/>
+
+    <button @click="doLogout">Çıkış</button>
   </div>
 </template>
-
+ 
 <script>
-import login from './components/login.vue'
-import changePassword from './components/changePassword.vue'
-
+import { mapActions } from 'vuex';
 export default {
   name: 'App',
-  components: {
-    login,
-    changePassword
+  methods: {
+      ...mapActions(['logout']),
+      doLogout() {
+        this.logout()
+        this.$router.push({ name: "Login" });
+      }
   }
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -27,6 +29,4 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
-
 </style>

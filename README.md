@@ -1,4 +1,4 @@
-# projectt
+# deneme
 
 ## Project setup
 ```
